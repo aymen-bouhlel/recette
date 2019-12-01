@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aliments{% endblock %}
+
+{% block MonTitre %}La liste des aliments{% endblock %}
+
+{% block body %}
+    <div class="row">
+        {% for aliment in aliments %}
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="card border-primary mb-3 mx-auto" style="max-width: 20rem;">
+                    <div class="card-header text-center">
+                        <img src="{{ asset('images/' ~ aliment.image) }}" >
+                    </div>
+                </div>
+            </div>  
+        {% endfor %}
+    </div>
+
+{% endblock %}
