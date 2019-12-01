@@ -1,0 +1,6 @@
+/* IMAGES ALIMENTS */
+.perso_imgAliment{
+    width: 150px;
+    height: 120px;
+    object-fit: cover;
+}

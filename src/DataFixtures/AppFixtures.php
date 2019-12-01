@@ -24,7 +24,7 @@ class AppFixtures extends Fixture
         $aliment2 = new Aliment();
         $aliment2->setNom("Patate")
                 ->setPrix(1.50)
-                ->setImage("aliments/patate.png")
+                ->setImage("aliments/patate.jpg")
                 ->setCalorie(80)
                 ->setProteine(1.80)
                 ->setGlucide(16.7)
