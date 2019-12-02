@@ -2,9 +2,15 @@
 
 {% block title %}Aliments{% endblock %}
 
-{% block MonTitre %}La liste des aliments{% endblock %}
+{% block MonTitre %}
+    La liste des aliments
+    {% if isCalorie %}
+        avec moins de 50 Calorie au 100g
+    {% endif %}
+{% endblock %}
 
 {% block body %}
+    <a href="{{ path('alimentsParCalorie', {'calorie' : 50}) }}">Aliments au moins de 50 calorie au 100g</a>
     <div class="row">
         {% for aliment in aliments %}
             <div class="col-12 col-md-6 col-lg-4 col-xl-3">
