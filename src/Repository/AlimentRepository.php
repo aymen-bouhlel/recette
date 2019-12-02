@@ -19,7 +19,7 @@ class AlimentRepository extends ServiceEntityRepository
         parent::__construct($registry, Aliment::class);
     }
 
-    // AFFICHER LES ALIMENTS QUI ONT AU MOINS 50 CALORIES
+    // AFFICHER LES ALIMENTS QUI ONT AU MOINS DE CERTAINS NOMBRE DE CALORIES
     public function getAlimentsParNbCalories($calorie)
     {
         return $this->createQueryBuilder('a')
