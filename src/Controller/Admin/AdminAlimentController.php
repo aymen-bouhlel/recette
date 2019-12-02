@@ -2,16 +2,21 @@
 
 namespace App\Controller\Admin;
 
+use App\Repository\AlimentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminAlimentController extends AbstractController
 {
     /**
-     * @Route("/admin/admin/aliment", name="admin_admin_aliment")
+     * @Route("/admin/aliment", name="admin_aliment")
      */
-    public function index()
+    public function index(AlimentRepository $repository)
     {
-        return $this->render('admin/admin_aliment/adminAliment.html.twig');
+        $aliments = $repository->findAll();
+
+        return $this->render('admin/admin_aliment/adminAliment.html.twig', [
+            'aliments' => $aliments,
+        ]);
     }
 }
