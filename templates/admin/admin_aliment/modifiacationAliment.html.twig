@@ -7,19 +7,20 @@
 {% endblock %}
 
 {% block body %}
-    <div class="row">
-        {# 1.COLONNE GAUCHE#}
-        <div class="col-6">
-            <img src="{{ asset('images/' ~ aliment.image) }}" style="width:25%;">
-            <div>{{ form_row(formAliment.image) }}</div>
-            <div>{{ form_row(formAliment.nom, {"attr" : {'class' : 'text-danger bg-success'}, "label" : "Nom de l'aliment:"}) }}</div>
-        </div>
-        {# 2.COLONNE DROITE #}
-        <div class="col-6">
-            {{ form_row(formAliment) }}
-        </div>
-    </div>   
-    <input type="submit" class="btn btn-primary" value="Enregistrer" >
+    {{ form_start(formAliment) }}
+        <div class="row">
+            {# 1.COLONNE GAUCHE#}
+            <div class="col-6">
+                <img src="{{ asset('images/' ~ aliment.image) }}" style="width:25%;">
+                <div>{{ form_row(formAliment.image) }}</div>
+                <div>{{ form_row(formAliment.nom, {"attr" : {'class' : 'text-danger bg-success'}, "label" : "Nom de l'aliment:"}) }}</div>
+            </div>
+            {# 2.COLONNE DROITE #}
+            <div class="col-6">
+                {{ form_row(formAliment) }}
+            </div>
+        </div>   
+        <input type="submit" class="btn btn-primary" value="Enregistrer">
     {{ form_end(formAliment) }}
 {% endblock %}
 
