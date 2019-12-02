@@ -28,9 +28,9 @@ class AdminAlimentController extends AbstractController
 
     /**
      * @Route("/admin/aliment/creation", name="admin_aliment_creation")
-     * @Route("/admin/aliment/{id}", name="admin_aliment_modification")
+     * @Route("/admin/aliment/{id}", name="admin_aliment_modification", methods="GET|POST")
      */
-    public function AjoutEtModification(Aliment $aliment = null, Request $request, EntityManagerInterface $objectManager)
+    public function ajoutEtModification(Aliment $aliment = null, Request $request, EntityManagerInterface $objectManager)
     {
         if (!$aliment) {
             $aliment = new Aliment();
@@ -52,5 +52,17 @@ class AdminAlimentController extends AbstractController
             'formAliment' => $form->createView(),
             'isModification' => $aliment->getId() !== null,
         ]);
+    }
+
+    /**
+     * @Route("/admin/aliment/{id}", name="admin_aliment_suppression", methods="delete")
+     */
+    public function suppression(Aliment $aliment, Request $request, EntityManagerInterface $objectManager)
+    {
+        if ($this->isCsrfTokenValid('SUP' . $aliment->getId(), $request->get('_token'))) {
+            $objectManager->remove($aliment);
+            $objectManager->flush();
+            return $this->redirectToRoute("admin_aliment");
+        }
     }
 }
