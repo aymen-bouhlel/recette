@@ -18,19 +18,35 @@ class AlimentController extends AbstractController
         return $this->render('aliment/aliments.html.twig', [
             'aliments' => $aliments,
             'isCalorie' => false,
+            'isGlucide' => false,
         ]);
     }
 
-     /**
-     * @Route("/aliments/{calorie}", name="alimentsParCalorie")
-     */
+    /**
+     * @Route("/aliments/calorie/{calorie}", name="alimentsParCalorie")
+    */
     public function alimentsMoinsCalorique(AlimentRepository $repository, $calorie)
     {
-        $aliments = $repository->getAlimentsParNbCalories($calorie);
+        $aliments = $repository->getAlimentsParPropriete("calorie", "<", $calorie);
 
         return $this->render('aliment/aliments.html.twig', [
             'aliments' => $aliments,
             'isCalorie' => true,
+            'isGlucide' => false,
         ]);
     }
+
+    /**
+     * @Route("/aliments/glucide/{glucide}", name="alimentsParGlucide")
+    */
+   public function alimentsMoinsGlucides(AlimentRepository $repository, $glucide)
+   {
+       $aliments = $repository->getAlimentsParPropriete("glucide", "<", $glucide);
+
+       return $this->render('aliment/aliments.html.twig', [
+           'aliments' => $aliments,
+           'isCalorie' => false,
+           'isGlucide' => true,
+       ]);
+   }
 }

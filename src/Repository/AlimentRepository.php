@@ -32,6 +32,19 @@ class AlimentRepository extends ServiceEntityRepository
         ;
     }
 
+    // FUNCTION GLOBAL: AFFICHER LES ALIMENTS QUI ONT AU MOINS DE CERTAINS NOMBRE DE PROPRIÉTÉS (CALORIE, GLUCIDE, LIPIDE...)
+    public function getAlimentsParPropriete($propriete, $signe, $calorie)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.' . $propriete . " " . $signe . ' :val')
+            ->setParameter('val', $calorie)
+            ->orderBy('a.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Aliment[] Returns an array of Aliment objects
     //  */
