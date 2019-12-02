@@ -27,10 +27,15 @@ class AdminAlimentController extends AbstractController
     }
 
     /**
+     * @Route("/admin/aliment/creation", name="admin_aliment_creation")
      * @Route("/admin/aliment/{id}", name="admin_aliment_modification")
      */
-    public function modification(Aliment $aliment, Request $request, EntityManagerInterface $objectManager)
+    public function AjoutEtModification(Aliment $aliment = null, Request $request, EntityManagerInterface $objectManager)
     {
+        if (!$aliment) {
+            $aliment = new Aliment();
+        }
+
         $form = $this->createForm(AlimentType::class, $aliment);
 
         $form->handleRequest($request);
@@ -42,9 +47,10 @@ class AdminAlimentController extends AbstractController
             return $this->redirectToRoute("admin_aliment");
         }
 
-        return $this->render('admin/admin_aliment/modifiacationAliment.html.twig', [
+        return $this->render('admin/admin_aliment/modifEtAjout.html.twig', [
             'aliment' => $aliment,
             'formAliment' => $form->createView(),
+            'isModification' => $aliment->getId() !== null,
         ]);
     }
 }

@@ -3,7 +3,13 @@
 {% block title %}Modification Aliment{% endblock %}
 
 {% block MonTitre %}
-    Modification de l'aliment {{ aliment.nom }}
+    {% if isModification %}
+        Modification de l'aliment {{ aliment.nom }}
+    {% else %}
+        Ajout d'un aliment
+    {% endif %}
+    
+    
 {% endblock %}
 
 {% block body %}
