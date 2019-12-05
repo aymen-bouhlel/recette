@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")
@@ -18,14 +19,35 @@ class Utilisateur
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 10,
+     *      minMessage = "Your username must be at least 5 characters long",
+     *      maxMessage = "Your username cannot be longer than 10 characters"
+     * )
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 10,
+     *      minMessage = "Your password must be at least 5 characters long",
+     *      maxMessage = "Your password cannot be longer than 10 characters"
+     * )
      */
     private $password;
 
+    /**
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 10,
+     *      minMessage = "Your password must be at least 5 characters long",
+     *      maxMessage = "Your password cannot be longer than 10 characters"
+     * )
+     * @Assert\EqualTo(propertyPath="password", message="les deux mot de passe ne sont pas equivalentes")
+     */
     private $verificationPassword;
 
     public function getId(): ?int
