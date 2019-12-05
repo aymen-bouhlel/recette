@@ -4,9 +4,14 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")
+ * @UniqueEntity(
+ * fields={"username"},
+ * message="cet user existe déjà!"
+ * )
  */
 class Utilisateur
 {
@@ -32,9 +37,9 @@ class Utilisateur
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
      *      min = 5,
-     *      max = 10,
+     *      max = 50,
      *      minMessage = "Your password must be at least 5 characters long",
-     *      maxMessage = "Your password cannot be longer than 10 characters"
+     *      maxMessage = "Your password cannot be longer than 50 characters"
      * )
      */
     private $password;
