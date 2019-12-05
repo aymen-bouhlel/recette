@@ -8,13 +8,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminSecuControlleController extends AbstractController
 {
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function index(Request $request, EntityManagerInterface $manager)
+    public function index(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
     {
 
         $utilisateur = new Utilisateur();
@@ -23,6 +24,10 @@ class AdminSecuControlleController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) 
         {
+            $passwordCrypte = $encoder->encodePassword($utilisateur,$utilisateur->getPassword());
+            $utilisateur->setPassword($passwordCrypte);
+
+            
             $manager->persist($utilisateur);
             $manager->flush();
 
