@@ -27,7 +27,7 @@ class AdminSecuControlleController extends AbstractController
             $passwordCrypte = $encoder->encodePassword($utilisateur,$utilisateur->getPassword());
             $utilisateur->setPassword($passwordCrypte);
 
-            
+
             $manager->persist($utilisateur);
             $manager->flush();
 
@@ -40,4 +40,25 @@ class AdminSecuControlleController extends AbstractController
             'InscriptionForm' => $form->createView(),
         ]);
     }
-}
+
+    /**
+     * @Route("/login", name="connexion")
+     */
+    public function login()
+    {
+
+        return $this->render('admin_secu_controlle/login.html.twig');
+    }
+
+    /**
+     * @Route("/logout", name="deconnexion")
+     */
+    public function logout()
+    {
+
+        return $this->render('admin_secu_controlle/logout.html.twig');
+    }
+
+
+
+}   
