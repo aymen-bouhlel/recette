@@ -26,10 +26,10 @@ class Utilisateur implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
-     *      min = 5,
-     *      max = 10,
-     *      minMessage = "Your username must be at least 5 characters long",
-     *      maxMessage = "Your username cannot be longer than 10 characters"
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "Your username must be at least 3 characters long",
+     *      maxMessage = "Your username cannot be longer than 50 characters"
      * )
      */
     private $username;
@@ -37,9 +37,9 @@ class Utilisateur implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
-     *      min = 5,
+     *      min = 3,
      *      max = 50,
-     *      minMessage = "Your password must be at least 5 characters long",
+     *      minMessage = "Your password must be at least 3 characters long",
      *      maxMessage = "Your password cannot be longer than 50 characters"
      * )
      */
@@ -47,10 +47,10 @@ class Utilisateur implements UserInterface
 
     /**
      * @Assert\Length(
-     *      min = 5,
-     *      max = 10,
-     *      minMessage = "Your password must be at least 5 characters long",
-     *      maxMessage = "Your password cannot be longer than 10 characters"
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "Your password must be at least 3 characters long",
+     *      maxMessage = "Your password cannot be longer than 50 characters"
      * )
      * @Assert\EqualTo(propertyPath="password", message="les deux mot de passe ne sont pas equivalentes")
      */
@@ -127,12 +127,10 @@ class Utilisateur implements UserInterface
 
     public function setRoles(?string $roles): self
     {
-        if ($roles === null) 
-        {
+        if ($roles === null) {
             $this->roles = "ROLE_USER";
         }
-        else 
-        {
+        else{
             $this->roles = $roles;
         }
         return $this;
