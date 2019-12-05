@@ -14,8 +14,8 @@
                 {% if isModification %}
                      <img src="{{ asset('images/types/' ~ type.image) }}" style="width:25%;">
                 {% endif %}
-                <div>{{ form_row(formType.libelle, {"attr" : {'class' : 'text-danger bg-success'}, "label" : "Nom de l'aliment:"}) }}</div>
-                <div>{{ form_row(formType.image) }}</div>
+                <div>{{ form_row(formType.libelle, {"attr" : {'class' : 'text-danger bg-success'}, "label" : "Nom de type:"}) }}</div>
+                <div>{{ form_row(formType.imageFile) }}</div>
             </div>
         </div>   
         <input type="submit" class="btn btn-primary" value="Valider">
